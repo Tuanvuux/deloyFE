@@ -17,7 +17,7 @@ const TestAPI = () => {
 
   return (
     <div>
-      <h2>xin chào tôi là tvuux</h2>
+      <h2>Hello</h2>
       {error ? <p>Lỗi: {error}</p> : <p>{message}</p>}
     </div>
   );
