@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-function App() {
+const TestAPI = () => {
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    axios.get("https://deloyapp-production.up.railway.app/")
+      .then((response) => {
+        setMessage(response.data); // API trả về chuỗi "Hello World"
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Kết quả API:</h2>
+      {error ? <p>Lỗi: {error}</p> : <p>{message}</p>}
     </div>
   );
-}
+};
 
-export default App;
+export default TestAPI;
